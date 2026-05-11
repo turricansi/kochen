@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Pizzateig Rechner</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.5;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      box-sizing: border-box;
+    }
+    .box {
+      margin-top: 24px;
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f8f8f8;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th, td {
+      border-bottom: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #eee;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Pizzateig Rechner</h1>
+
+<label>Gesamtmehl in g</label>
+<input id="flour" type="number" value="1000">
+
+<label>Hydration in %</label>
+<input id="hydration" type="number" value="64.8" step="0.1">
+
+<label>Salz in % bezogen auf Gesamtmehl</label>
+<input id="saltPercent" type="number" value="2.2" step="0.1">
+
+<label>Poolish-Mehlanteil in % vom Gesamtmehl</label>
+<input id="poolishPercent" type="number" value="26" step="1">
+
+<label>Trockenhefe in % bezogen auf Poolish-Mehl</label>
+<input id="yeastPercent" type="number" value="0.58" step="0.01">
+
+<label>Honig in % bezogen auf Poolish-Mehl</label>
+<input id="honeyPercent" type="number" value="1.15" step="0.01">
+
+<label>Anzahl Pizzen</label>
+<input id="pizzaCount" type="number" value="7">
+
+<button onclick="calculate()" style="margin-top:16px;padding:10px 16px;">
+  Berechnen
+</button>
+
+<div class="box">
+  <h2>Ergebnis</h2>
+  <p id="summary"></p>
+
+  <h3>Poolish</h3>
+  <table>
+    <tbody id="poolishTable"></tbody>
+  </table>
+
+  <h3>Hauptteig</h3>
+  <table>
+    <tbody id="doughTable"></tbody>
+  </table>
+</div>
+
+<script>
+function round(value) {
+  return Math.round(value * 10) / 10;
+}
+
+function calculate() {
+  const flour = Number(document.getElementById('flour').value);
+  const hydration = Number(document.getElementById('hydration').value) / 100;
+  const saltPercent = Number(document.getElementById('saltPercent').value) / 100;
+  const poolishPercent = Number(document.getElementById('poolishPercent').value) / 100;
+  const yeastPercent = Number(document.getElementById('yeastPercent').value) / 100;
+  const honeyPercent = Number(document.getElementById('honeyPercent').value) / 100;
+  const pizzaCount = Number(document.getElementById('pizzaCount').value);
+
+  const totalWater = flour * hydration;
+  const salt = flour * saltPercent;
+
+  const poolishFlour = flour * poolishPercent;
+  const poolishWater = poolishFlour; // 100 % Poolish
+  const yeast = poolishFlour * yeastPercent;
+  const honey = poolishFlour * honeyPercent;
+
+  const mainFlour = flour - poolishFlour;
+  const mainWater = totalWater - poolishWater;
+
+  const totalWeight =
+    flour + totalWater + salt + yeast + honey;
+
+  const ballWeight = totalWeight / pizzaCount;
+
+  document.getElementById('summary').innerHTML =
+    `Gesamtgewicht: <strong>${round(totalWeight)} g</strong><br>` +
+    `Teigkugeln: <strong>${pizzaCount} × ${round(ballWeight)} g</strong><br>` +
+    `Hydration: <strong>${round(hydration * 100)} %</strong>`;
+
+  document.getElementById('poolishTable').innerHTML = `
+    <tr><td>Wasser kalt</td><td>${round(poolishWater)} g</td></tr>
+    <tr><td>Trockenhefe</td><td>${round(yeast)} g</td></tr>
+    <tr><td>Honig</td><td>${round(honey)} g</td></tr>
+    <tr><td>Mehl 00</td><td>${round(poolishFlour)} g</td></tr>
+  `;
+
+  document.getElementById('doughTable').innerHTML = `
+    <tr><td>Poolish</td><td>komplett</td></tr>
+    <tr><td>Wasser kalt</td><td>${round(mainWater)} g</td></tr>
+    <tr><td>Meersalz</td><td>${round(salt)} g</td></tr>
+    <tr><td>Mehl 00</td><td>${round(mainFlour)} g</td></tr>
+  `;
+}
+
+calculate();
+</script>
+
+</body>
+</html>
