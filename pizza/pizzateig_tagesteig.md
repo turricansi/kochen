@@ -3,7 +3,7 @@
 Dieser Teig ist für denselben Tag gedacht.  
 Er wird morgens angesetzt und ist abends backbereit.
 
-Das Rezept ist für ca. **7 kleinere Pizzen** ausgelegt.
+Das Rezept ist für ca. **7 kleinere Pizzen** oder **6 größere Pizzen** ausgelegt.
 
 ---
 
@@ -41,6 +41,7 @@ Das Rezept ist für ca. **7 kleinere Pizzen** ausgelegt.
 | Gesamtgewicht ohne Öl | ca. 1677 g |
 | Gesamtgewicht mit 20 g Öl | ca. 1697 g |
 | Teigkugeln | 7 Stück à ca. 240–243 g |
+| Teigkugeln | 6 Stück à ca. 280–283 g |
 
 ---
 
@@ -63,7 +64,7 @@ Das Rezept ist für ca. **7 kleinere Pizzen** ausgelegt.
 1. Teig 30 Minuten abgedeckt bei Raumtemperatur ruhen lassen.
 2. Teig einmal falten.
 3. Weitere 30 Minuten abgedeckt ruhen lassen.
-4. Teig in 7 Kugeln teilen.
+4. Teig in 6/7 Kugeln teilen.
 5. Kugeln leicht einölen oder in eine leicht geölte Box setzen.
 6. Teigkugeln abgedeckt bei Raumtemperatur gehen lassen.
 7. Abends backen, wenn die Kugeln sichtbar aufgegangen, entspannt und gut formbar sind.
