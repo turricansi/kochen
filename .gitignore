@@ -1,0 +1,5 @@
+.env
+*.env.local
+config/secrets.yml
+**/__pycache__/
+*.key
